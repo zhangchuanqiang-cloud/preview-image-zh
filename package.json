@@ -1,0 +1,132 @@
+{
+  "name": "vscode-gutter-preview-cn",
+  "private": true,
+  "description": "在代码行号区域和悬停时预览图片，支持变量引用和动态图片选择",
+  "author": "原作者: Tamas Kiss",
+  "publisher": "qianggaogao",
+  "license": "MIT",
+  "version": "0.32.2",
+  "displayName": "图片预览增强版 (中文版)",
+  "icon": "images/logo.png",
+  "engines": {
+    "vscode": "^1.88.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "vscode",
+    "image",
+    "preview",
+    "图片",
+    "预览",
+    "变量引用",
+    "中文版"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "图片预览增强版配置",
+      "properties": {
+        "gutterpreview.sourceFolder": {
+          "default": "src",
+          "scope": "resource",
+          "description": "解析相对路径时要考虑的额外文件夹",
+          "type": "string"
+        },
+        "gutterpreview.sourceFolders": {
+          "default": [
+            "static",
+            "public"
+          ],
+          "scope": "resource",
+          "description": "解析相对路径时要考虑的额外文件夹列表",
+          "type": "array"
+        },
+        "gutterpreview.imagePreviewMaxHeight": {
+          "default": "100",
+          "scope": "resource",
+          "description": "预览图片的最大高度",
+          "type": "number"
+        },
+        "gutterpreview.imagePreviewMaxWidth": {
+          "default": "-1",
+          "scope": "resource",
+          "description": "预览图片的最大宽度（如果大于0，将覆盖最大高度设置）",
+          "type": "number"
+        },
+        "gutterpreview.showImagePreviewOnGutter": {
+          "default": true,
+          "scope": "resource",
+          "description": "是否在代码行号区域显示图片预览",
+          "type": "boolean"
+        },
+        "gutterpreview.showUnderline": {
+          "default": true,
+          "scope": "resource",
+          "description": "是否为识别到的图片URL添加下划线",
+          "type": "boolean"
+        },
+        "gutterpreview.paths": {
+          "default": {},
+          "scope": "resource",
+          "description": "指定相对于项目根目录的路径映射",
+          "type": "object"
+        },
+        "gutterpreview.currentColorForSVG": {
+          "default": "white",
+          "scope": "resource",
+          "description": "SVG预览时使用的默认颜色",
+          "type": "string"
+        },
+        "gutterpreview.enableReferenceLookup": {
+          "default": true,
+          "scope": "resource",
+          "description": "是否启用资源引用查找功能",
+          "type": "boolean"
+        },
+        "gutterpreview.urlDetectionPatterns": {
+          "default": [],
+          "scope": "resource",
+          "markdownDescription": "用于检测特殊URL格式的正则表达式模式。例如，某些没有扩展名的图片URL（如 `https://example.com/pic/640?fmt=jpeg`）可能无法被检测到。您可以通过配置正则表达式（如 `/^http(s)*://example.com/pic/i`）来支持这些URL。",
+          "type": "array"
+        }
+      }
+    }
+  },
+  "main": "./dist/extension",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup && tsc --noEmit",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.8",
+    "@types/node-fetch": "^2.6.11",
+    "@types/tmp": "^0.2.6",
+    "@types/vscode": "^1.88.0",
+    "filesize": "^10.1.1",
+    "husky": "^9.0.11",
+    "image-size": "^1.1.1",
+    "json5": "^2.2.3",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.2.5",
+    "regex-parser": "^2.3.0",
+    "slash": "^5.1.0",
+    "strip-bom": "^5.0.0",
+    "tmp": "^0.2.3",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  }
+}
